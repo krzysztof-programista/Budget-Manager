@@ -1,0 +1,122 @@
+body {
+    font-family: "Montserrat";
+    text-align: center;
+    background-color: #efefec;
+    color: #005329;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+p {
+    color:#005329;
+}
+
+hr {
+    border-top: 1px solid #005329;
+    margin: 0;
+}
+
+/* Containers */
+
+.container-fluid {
+    padding: 0% 10% 0%;
+}
+
+
+/* SECTIONS */
+.light-colored-section {
+    background-color: #efefec;
+    color: #005329;
+}
+.dark-colored-section {
+    background-color: #4c9458;
+    color: #005329;
+}
+
+
+
+/* Navigation bar */
+#title .container-fluid {
+    text-align: left;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    color: #ef8172;
+    margin: 1rem 1rem 1rem 1rem ;
+}
+
+.login-button {
+    margin: 0 5px;
+    font-size: 1rem;
+    padding: 0.75rem;
+}
+
+.register-button {
+    margin: 0 5px;
+    background-color: #4c9458;
+    font-size: 1rem;
+    padding: 0.75rem;
+}
+
+.description-text {
+    height: 50px;
+    line-height: 40px;
+    font-size: 1rem;
+    margin: 0 5px;
+}
+
+
+
+/* Title Section */
+
+.title-heading {
+    text-align: left;
+    font-size: 7vw;
+    font-weight: 600;
+    padding: 10% 0% 5%;
+}
+
+.title-paragraph {
+    text-align: left;
+    padding: 5% 0% 5%;
+    font-size: 1.25vw;
+    font-weight: 400;
+    line-height: 2;
+}
+
+.title-image {
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+@media (max-width: 992px) {
+    .title-heading {
+        text-align: center;
+        font-size: 5rem;
+    }
+
+    .title-paragraph {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+
+    .title-image {
+        position: static;
+        transform: translate(0, 0);
+        display: block;
+        margin: auto;
+        width: 40%;
+    }
+}
+
