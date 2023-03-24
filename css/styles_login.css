@@ -23,6 +23,7 @@ hr {
     margin: 0;
 }
 
+
 /* Containers */
 
 .container-fluid {
@@ -89,7 +90,7 @@ hr {
 }
 .form-control {
     min-height: 38px;
-    border-radius: 2px;
+    border-radius: 5px;
 }
 .input-group-prepend .fa {
     font-size: 18px;
@@ -111,8 +112,14 @@ hr {
 }
 
 .form-group {
-    padding: 5px;
+    padding: 8px;
 }
 
 
+/* Footer Section */
+
+#footer .container-fluid {
+    margin-top: 20px;
+    padding-bottom: 0px;
+}
 

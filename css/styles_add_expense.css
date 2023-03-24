@@ -23,6 +23,7 @@ hr {
     margin: 0;
 }
 
+
 /* Containers */
 
 .container-fluid {
@@ -71,6 +72,11 @@ hr {
     margin: 0 5px;
 }
 
+.text {
+    margin: 0 10px;
+    line-height: 1;
+}
+
 
 
 /* Registration Section */
@@ -97,22 +103,38 @@ hr {
     height: 24px;
 }
 
-.register-button {
-    margin-top: 10px;
+.add-button {
     background-color: #4c9458;
     font-size: 1rem;
     padding: 0.75rem;
+    margin-right: 55px;
+    color: #fff;
+}
+
+.cancel-button {
+    font-size: 1rem;
+    padding: 0.75rem;
+    margin-left: 55px;
     color: #fff;
 }
 
 .input-group-text {
     background-color: lightgrey;
-    border-radius: 5px 0 0 5px;
+    border-radius: 0 5px 5px 0;
 }
 
 .form-group {
     padding: 8px;
 }
+
+.buttons {
+    padding: 20px 0 20px;
+}
+
+.hstack {
+    align-items: start;
+}
+
 
 /* Footer Section */
 

@@ -9,7 +9,12 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
 }
 
+h1 {
+    font-size: 2rem;
+}
+
 p {
+    text-align: center;
     color:#005329;
 }
 
@@ -18,10 +23,11 @@ hr {
     margin: 0;
 }
 
+
 /* Containers */
 
 .container-fluid {
-    padding: 0% 10% 0%;
+    padding: 0% 10% 2%;
 }
 
 
@@ -38,6 +44,7 @@ hr {
 
 
 /* Navigation bar */
+
 #title .container-fluid {
     text-align: left;
 }
@@ -58,13 +65,6 @@ hr {
     padding: 0.75rem;
 }
 
-.register-button {
-    margin: 0 5px;
-    background-color: #4c9458;
-    font-size: 1rem;
-    padding: 0.75rem;
-}
-
 .description-text {
     height: 50px;
     line-height: 40px;
@@ -72,31 +72,62 @@ hr {
     margin: 0 5px;
 }
 
-
-
-/* Title Section */
-
-.title-heading {
-    text-align: left;
-    font-size: 7vw;
-    font-weight: 600;
-    padding: 10% 0% 5%;
+.text {
+    margin: 0 10px;
+    line-height: 1;
 }
 
-.title-paragraph {
+
+
+/* Balance Section */
+
+#balance .container-fluid {
+    padding: 0% 20% 0%;
+}
+
+.title-heading {
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1% 0% 1%;
+}
+
+.balance-heading {
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 2% 0% 2%;
+}
+
+.balance-heading-full {
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 1% 0% 1%;
+}
+
+.balance-paragraph {
     text-align: left;
-    padding: 5% 0% 5%;
-    font-size: 1.25vw;
+    padding: 5% 5% 5%;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 2;
 }
 
-.title-image {
-    width: 80%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.balance-paragraph-full {
+    padding: 2.5% 2.5% 2.5%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 2;
+}
+
+.single-column {
+    padding: 1% 1%;
+}
+
+.single-column-thin {
+    padding: 1% 30%;
+}
+
+.single-column-wide {
+    padding: 1% 20%;
 }
 
 
@@ -108,23 +139,29 @@ hr {
 }
 
 
+
+
 @media (max-width: 992px) {
+
+    #balance .container-fluid {
+        padding: 0% 5% 0%;
+    }
+    
     .title-heading {
         text-align: center;
-        font-size: 5rem;
+        font-size: 4rem;
     }
 
-    .title-paragraph {
+    .balance-heading {
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    .balance-paragraph {
         text-align: center;
         font-size: 1.5rem;
     }
 
-    .title-image {
-        position: static;
-        transform: translate(0, 0);
-        display: block;
-        margin: auto;
-        width: 40%;
-    }
 }
+
 
