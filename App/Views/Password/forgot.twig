@@ -1,0 +1,36 @@
+{% extends 'base.twig' %}
+
+{% block title %}Zapomniałem hasła
+{% endblock %}
+
+{% block body %}
+
+	<section class="light-colored-section" id="registration">
+
+		<div class="registration-form">
+
+			<form action="/password/request-reset" method="post">
+				<h2 class="text-center">Resetuj hasło</h2>
+
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<span class="fa fa-solid fa-envelope"></span>
+							</span>
+						</div>
+						<input type="email" id="inputEmail" name="email" placeholder="Adres email" autofocus required class="form-control"/>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="sign-in-button btn btn-light">Resetuj hasło</button>
+				</div>
+
+			</form>
+
+		</div>
+	</section>
+
+{% endblock %}
+

@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+
+    <h1>Profil</h1>
+
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-2">Imię:</div>
+            <div class="col-2">{{ user.name }}</div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-2">Email:</div>
+            <div class="col-2">{{ user.email }}</div>
+        </div>
+    </div>
+
+
+    <a href="/profile/edit">Edit</a>
+
+{% endblock %}
