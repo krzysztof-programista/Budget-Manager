@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+		<link rel="icon" href="/images/favicon.ico">
+
+		<!-- Google fonts -->
+		<link
+		href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;600;700;800;900&family=Ubuntu&display=swap" rel="stylesheet">
+
+		<!-- CSS Stylesheets -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<link
+		rel="stylesheet" href="/css/styles.css"/>
+
+		<!-- Font Awesome -->
+		<script src="https://kit.fontawesome.com/94e668e5ca.js" crossorigin="anonymous"></script>
+
+		<!-- Bootstrap Scripts -->
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+	</head>
+
+
+	<body>
+
+
+		<section class="light-colored-section" id="title">
+			<div
+				class="container-fluid">
+
+
+				<!-- Nav Bar -->
+				<nav class="navbar navbar-expand-lg navbar-light">
+
+					<a class="navbar-brand" href="/">
+						<i class="icon fa-solid fa-piggy-bank fa-3x"></i>Budget Manager</a>
+
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+						<ul class="navbar-nav ms-auto">
+						
+
+							{% if current_user %}
+							<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+								<ul class="navbar-nav ms-auto">
+									<li class="text nav-item">
+										<a class="hstack nav-link" href="/">
+											<i class="fa fa-solid fa-house"></i>
+											Strona główna
+										</a>
+									</li>
+
+									<li class="text nav-item">
+										<a class="hstack nav-link" href="/income/show">
+											<i class="fa fa-solid fa-dollar-sign"></i>
+											Dodaj przychód
+										</a>
+									</li>
+
+									<li class="text nav-item">
+										<a class="hstack nav-link" href="/expense/show">
+											<i class="fa fa-solid fa-cart-shopping"></i>
+											Dodaj wydatek
+										</a>
+									</li>
+
+									<li class="hstack text nav-item dropdown">
+										<a class="hstack nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
+											aria-expanded="false">
+											<i class="fa fa-solid fa-chart-simple"></i>
+											Przeglądaj bilans
+										</a>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="/balance/showCurrentMonth">Bieżący miesiąc</a></li>
+											<li><a class="dropdown-item" href="/balance/showPreviousMonth">Poprzedni miesiąc</a></li>
+											<li><a class="dropdown-item" href="/balance/showYear">Bieżący rok</a></li>
+											<li>
+												<hr class="dropdown-divider">
+											</li>
+											<li><a class="dropdown-item" href="/balance/showCustom" data-bs-toggle="modal" data-bs-target="#custonBalanceModal">Niestandardowy</a></li>
+										</ul>
+									</li>
+
+									<li class="hstack text nav-item">
+										<a class="hstack nav-link" href="/settings/show">
+											<i class="fa fa-solid fa-gear"></i>
+											Ustawienia
+										</a>
+									</li>
+									<li class="hstack text nav-item">
+										<a class="hstack nav-link" href="/logout">
+											<i class="fa fa-solid fa-gear"></i>
+											Wyloguj się
+										</a>
+									</li>
+
+
+								</ul>
+							</div>
+							{% endif %}
+
+
+							{% if current_user == false %}
+							<li class="nav-item">
+								<a class="description-text nav-link" href="/">Jak to działa?</a>
+							</li>
+							<li class="nav-item">
+								<a href="/login" class="login-button btn btn-outline-dark" role="button">Logowanie</a>
+							</li>
+							<li class="nav-item">
+								<a href="/signup/new" class="register-button btn btn-light" role="button">Rejestracja</a>
+							</li>
+							{% endif %}
+
+						</ul>
+					</div>
+
+				</nav>
+				<hr>
+			</div>
+
+			<!-- Custom-balance modal -->
+			<div class="modal fade" id="custonBalanceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="exampleModalLabel">Wybierz zakres dat:</h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							Od:
+							<input type="date" id="startDate">
+							Do:
+							<input type="date" id="endDate">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+							<button id="okButton" type="button" class="btn btn-primary" data-bs-toggle="modal" >Ok</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</section>
+
+		{% for message in flash_messages %}
+			<div class="alert alert-{{ message.type }}">
+				{{ message.body }}
+			</div>
+		{% endfor %}
+
+		{% block body %}{% endblock %}
+
+		{% block footer %}{% endblock %}
+
+		<footer id="footer">
+			<div class="footer-kg container-fluid">
+				<hr>
+				<p>© Copyright 2023 Krzysztof Gniadzik</p>
+			</div>
+
+		</footer>
+
+		<script src="/js/balance.js"></script>
+
+	</body>
+</html>
+

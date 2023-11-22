@@ -1,0 +1,311 @@
+body {
+    font-family: "Montserrat";
+    text-align: center;
+    background-color: #efefec;
+    color: #005329;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+p {
+    color:#005329;
+}
+
+hr {
+    border-top: 1px solid #005329;
+    margin: 0;
+}
+
+/* Containers */
+
+.container-fluid {
+    padding: 0% 10% 0%;
+}
+
+
+/* SECTIONS */
+.light-colored-section {
+    background-color: #efefec;
+    color: #005329;
+}
+.dark-colored-section {
+    background-color: #4c9458;
+    color: #005329;
+}
+
+
+
+/* Navigation bar */
+#title .container-fluid {
+    text-align: left;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    color: #ef8172;
+    margin: 1rem 1rem 1rem 1rem ;
+}
+
+.login-button {
+    margin: 0 5px;
+    font-size: 1rem;
+    padding: 0.75rem;
+}
+
+.register-button {
+    margin: 0 5px;
+    background-color: #4c9458;
+    font-size: 1rem;
+    padding: 0.75rem;
+}
+
+.description-text {
+    height: 50px;
+    line-height: 40px;
+    font-size: 1rem;
+    margin: 0 5px;
+}
+
+
+
+/* Title Section */
+
+.title-heading {
+    text-align: left;
+    font-size: 7vw;
+    font-weight: 600;
+    padding: 10% 0% 5%;
+}
+
+.title-paragraph {
+    text-align: left;
+    padding: 5% 0% 5%;
+    font-size: 1.25vw;
+    font-weight: 400;
+    line-height: 2;
+}
+
+.title-image {
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Limit Section */
+.above-limit {
+    color: #ef8172;
+}
+
+.limit {
+    font-weight: 500;
+}
+
+.limit-form {
+    margin: auto;
+    width: 750px;
+}
+.limit-column {
+    width: 340px;
+    height: 433px;
+    margin: 50px auto;
+    padding: 10px;
+    background-color: #f7f7f7;;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.limit-info {
+    border: 1px solid;
+    height: 127px;
+    margin: 10px 0;
+}
+
+/* Login Section */
+.registration-form {
+    width: 340px;
+    margin: 50px auto;
+}
+.registration-form form {        
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.registration-form h2 {
+    margin: 0 0 15px;
+}
+.form-control {
+    min-height: 38px;
+    border-radius: 5px;
+}
+.input-group-prepend .fa {
+    font-size: 18px;
+    width: 20px;
+    height: 24px;
+}
+
+.sign-in-button {
+    margin-top: 10px;
+    background-color: #4c9458;
+    font-size: 1rem;
+    padding: 0.75rem;
+    color: #fff;
+}
+
+.input-group-text {
+    background-color: lightgrey;
+    border-radius: 5px 0 0 5px;
+}
+
+.form-group {
+    padding: 8px;
+}
+
+
+
+/* Signup Section */
+.register-button-form {
+    margin-top: 10px;
+    background-color: #4c9458;
+    font-size: 1rem;
+    padding: 0.75rem;
+    color: #fff;
+}
+
+.right-pict{
+    border-radius: 0 5px 5px 0;
+}
+
+/* Balance Section */
+#balance .container-fluid {
+    padding: 0% 10% 0%;
+}
+
+#balance .title-heading {
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1% 0% 1%;
+    text-align: center;
+}
+
+.balance-heading {
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 2% 0% 2%;
+}
+
+.balance-heading-full {
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 1% 0% 1%;
+}
+
+.balance-paragraph {
+    text-align: left;
+    padding: 5% 5% 5%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 2;
+}
+
+.balance-paragraph-full {
+    padding: 2.5% 2.5% 2.5%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 2;
+}
+
+.single-column {
+    padding: 1% 1%;
+}
+
+.single-column-thin {
+    padding: 1% 30%;
+}
+
+.single-column-wide {
+    padding: 1% 20%;
+}
+
+.success {
+    color: rgb(77, 173, 13);
+}
+
+.error {
+    color: red;
+}
+
+
+td,th,tr {
+    border: 1px solid;
+    padding: 0 10px;
+}
+
+.centeredTable {
+    padding: 10px;
+    margin: auto;
+    font-size: 14px
+}
+
+
+
+/* Add Expense Section */
+.add-button {
+    background-color: #4c9458;
+    font-size: 1rem;
+    padding: 0.75rem;
+    margin-right: 55px;
+    color: #fff;
+}
+
+.cancel-button {
+    font-size: 1rem;
+    padding: 0.75rem;
+    margin-left: 55px;
+    color: #fff;
+}
+
+/* Settings */
+.form-check-input:checked {
+    background-color: #4c9458;
+    border-color: #4c9458;
+}
+
+
+
+
+
+/* Footer Section */
+
+#footer .container-fluid {
+    margin-top: 20px;
+    padding-bottom: 0px;
+}
+
+
+@media (max-width: 992px) {
+    .title-heading {
+        text-align: center;
+        font-size: 5rem;
+    }
+
+    .title-paragraph {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+
+    .title-image {
+        position: static;
+        transform: translate(0, 0);
+        display: block;
+        margin: auto;
+        width: 40%;
+    }
+}
+

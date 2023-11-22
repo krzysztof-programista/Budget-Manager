@@ -1,0 +1,80 @@
+{% extends 'base.twig' %}
+
+{% block title %}Dodaj przychód
+{% endblock %}
+
+{% block body %}
+
+	<section class="light-colored-section" id="registration">
+
+		<div class="registration-form">
+			<form action="/income/add" method="post">
+				<h2 class="text-center">Dodaj przychód</h2>
+
+				{% if session.s_income is defined %}
+					<div class="success">
+						{{ session.s_income }}
+					</div>
+				{% endif %}
+				{% if session.e_income is defined %}
+					<div class="error">
+						{{ session.e_income }}
+					</div>
+				{% endif %}
+
+
+				<div class="form-group">
+					<div class="input-group">
+						<input type="number" name="amount" class="form-control" placeholder="Kwota" required step="0.01" min="0">
+						<div class="input-group-prepend">
+							<span class="input-group-text right-pict">
+								<span class="fa fa-solid fa-sack-dollar"></span>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group">
+						<input type="date" name="date" id="date" class="form-control" required>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<div class="input-group">
+
+						<select class="form-select" name="category" id="category" aria-label="Kategoria przychodu">
+
+							{% for income_category in income_categories %}
+								<option value="{{ income_category.id }}">{{ income_category.name }}</option>
+							{% endfor %}
+
+						</select>
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group">
+						<input type="text" name="comment" class="form-control" placeholder="Komentarz">
+						<div class="input-group-prepend">
+							<span class="input-group-text right-pict">
+								<span class="fa fa-solid fa-file-pen"></span>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="buttons">
+					<button type="submit" class="add-button btn btn-light">Dodaj</button>
+					<button type="submit" class="cancel-button btn btn-warning">Anuluj</button>
+				</div>
+
+			</form>
+		</div>
+				<script src="/js/incomes.js"></script>
+	</section>
+
+{% endblock %}
+

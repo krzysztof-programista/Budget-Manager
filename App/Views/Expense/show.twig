@@ -1,0 +1,122 @@
+{% extends 'base.twig' %}
+
+{% block title %}Dodaj wydatek
+{% endblock %}
+
+{% block body %}
+
+	<section class="light-colored-section" id="registration">
+
+		<div class="limit-form">
+
+			<div class="row justify-content-center">
+
+				<div class="col">
+					<div class="registration-form">
+						<form action="/expense/add" method="post">
+							<h2 class="text-center">Dodaj wydatek</h2>
+
+							{% if session.s_expense is defined %}
+								<div class="success">
+									{{ session.s_expense }}
+								</div>
+							{% endif %}
+							{% if session.e_expense is defined %}
+								<div class="error">
+									{{ session.e_expense }}
+								</div>
+							{% endif %}
+
+
+							<div class="form-group">
+								<div class="input-group">
+									<input type="number" name="amount" id="amount" class="form-control" placeholder="Kwota" required step="0.01" min="0">
+									<div class="input-group-prepend">
+										<span class="input-group-text right-pict">
+											<span class="fa fa-solid fa-sack-dollar"></span>
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="input-group">
+									<input type="date" name="date" id="date" class="form-control" required>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<div class="input-group">
+
+									<select class="form-select" name="category" id="category" aria-label="Kategoria przychodu">
+
+										{% for expense_category in expense_categories %}
+											<option value="{{ expense_category.id }}">{{ expense_category.name }}</option>
+										{% endfor %}
+
+									</select>
+
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="input-group">
+
+									<select class="form-select" name="payment_method" aria-label="Sposób płatności">
+
+										{% for payment_method in payment_methods %}
+											<option value="{{ payment_method.id }}">{{ payment_method.name }}</option>
+										{% endfor %}
+
+									</select>
+
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="input-group">
+									<input type="text" name="comment" class="form-control" placeholder="Komentarz">
+									<div class="input-group-prepend">
+										<span class="input-group-text right-pict">
+											<span class="fa fa-solid fa-file-pen"></span>
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="buttons">
+								<button type="submit" class="add-button btn btn-light">Dodaj</button>
+								<button type="submit" class="cancel-button btn btn-warning">Anuluj</button>
+							</div>
+
+						</form>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="limit-column">
+						<div class="limit-info">
+							<p class="limit">Informacje o limicie miesięcznym dla wybranej kategorii:</p>
+							<p id="limit-info"> </p>
+						</div>
+						<div class="limit-info" >
+							<p class="limit">Wartość limitu miesiecznego:</p>
+							<p id="limit-value"> </p>
+						</div>
+						<div class="limit-info">
+							<p class="limit">Pozostałe środki w miesiacu:</p>
+							<p id="left-cash"> </p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<script src="/js/limit.js"></script>
+	</section>
+
+{% endblock %}
+

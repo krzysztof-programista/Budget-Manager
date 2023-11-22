@@ -1,0 +1,218 @@
+{% extends "base.twig" %}
+
+{% block title %}Ustawienia
+{% endblock %}
+
+{% block footer %}
+	<script src="/js/settings.js"></script>
+{% endblock %}
+
+{% block body %}
+
+	<section class="light-colored-section" id="balance">
+
+		<div class="container-fluid">
+
+			<h1>Edycja kategorii</h1>
+
+			<div class="row">
+				<div class="single-column col-lg-4">
+					<div class="card">
+
+						{% if income_categories is not empty %}
+
+							<div class="centeredTable">
+								<table id="settings_incomes">
+									<tr>
+										<th colspan="3">Lista kategorii przychodów
+										</th>
+									</tr>
+									<tr>
+										<th>Kategoria</th>
+										<th>Edytuj</th>
+										<th>Usuń</th>
+									</tr>
+
+									{% for income_category in income_categories %}
+										<tr>
+											<td>{{ income_category.name }}</td>
+											<td><i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#add-edit-modal" onclick="prepareForm('edit', 'income', {{ income_category.id }}, '{{ income_category.name }}')"></i></td>
+											<td><i class="fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#remove-modal" onclick="prepareRemoveModal('income',{{ income_category.id }})"></i></td>
+										</tr>
+									{% endfor %}
+
+								</table>
+							</div>
+
+						{% endif %}
+						<hr>
+
+						<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#add-edit-modal" onclick="prepareForm('add', 'income', 0)">Dodaj nową kategorię</button>
+
+					</div>
+				</div>
+
+				<div class="single-column col-lg-4">
+					<div class="card">
+						{% if expense_categories is not empty %}
+
+							<div class="centeredTable">
+								<table id="settings_expenses">
+
+									<tr>
+										<th colspan="6">Lista kategorii wydatków
+										</th>
+									</tr>
+									<tr>
+										<th rowspan="2">Kategoria</th>
+										<th colspan="2">Limit</th>									
+										<th rowspan="2">Edytuj</th>
+										<th rowspan="2">Usuń</th>
+									</tr>
+									<tr>
+										<th >Wartość</th>			
+										<th >ON/OFF</th>								
+									</tr>
+
+									{% for expense_category in expense_categories %}
+										<tr>
+											<td>{{ expense_category.name }}</td>
+											<td>{{ expense_category.cash_limit != null ? expense_category.cash_limit : '-' }}</td>
+											<td> <input type="checkbox" class="form-check-input limit-checkbox" data-expense-id="{{ expense_category.id }}" {% if expense_category.is_limit_active == '1' %}checked{% endif %} /></td>
+											<td><i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#add-edit-modal" onclick="prepareForm('edit', 'expense', {{ expense_category.id }}, '{{ expense_category.name }}', {{ expense_category.cash_limit }})"></i></td>
+											<td><i class="fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#remove-modal" onclick="prepareRemoveModal('expense',{{ expense_category.id }})"></i></td>
+										</tr>
+									{% endfor %}
+
+								</table>
+							</div>
+
+						{% endif %}
+						<hr>
+
+						<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#add-edit-modal" onclick="prepareForm('add', 'expense', 0, 0)">Dodaj nową kategorię</button>
+
+					</div>
+				</div>
+
+				<div class="single-column col-lg-4">
+					<div class="card">
+						{% if payment_categories is not empty %}
+
+							<div class="centeredTable">
+								<table id="payment_expenses">
+
+									<tr>
+										<th colspan="3">Lista środków płatności
+										</th>
+									</tr>
+									<tr>
+										<th>Kategoria</th>
+										<th>Edytuj</th>
+										<th>Usuń</th>
+									</tr>
+
+									{% for payment_category in payment_categories %}
+										<tr>
+											<td>{{ payment_category.name }}</td>
+											<td><i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#add-edit-modal" onclick="prepareForm('edit', 'payment', {{ payment_category.id }}, '{{ payment_category.name }}')"></i></td>
+											<td><i class="fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#remove-modal" onclick="prepareRemoveModal('payment',{{ payment_category.id }})"></i></td>
+										</tr>
+									{% endfor %}
+
+								</table>
+							</div>
+
+						{% endif %}
+						<hr>
+
+						<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#add-edit-modal" onclick="prepareForm('add', 'payment', 0)">Dodaj nową kategorię</button>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<h1>Edycja danych użytkownika</h1>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="single-column col-lg-12">
+                    <div class="card">
+                        <div class="centeredTable">
+                            <table id="user_data">
+                                <tr>
+                                    <td>Imię</th>
+                                    <td>{{ user.username }}</th>
+                                </tr>
+                                <tr>
+                                    <td>Email</th>
+                                    <td>{{ user.email }}</th>
+                                </tr>
+                            </table>
+                        </div>
+                        <a href="/profile/edit">Edytuj</a>
+                    </div>
+                </div>
+        	</div>
+		</div>
+
+	</section>
+
+	<!-- Add/edit category modal -->
+	<div class="modal fade" id="add-edit-modal" tabindex="-1" aria-labelledby="add-edit-modal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="add-edit-title">Dodaj kategorię</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+
+			<form id="add-edit-form">
+				<div class="modal-body">
+
+					<div class="mb-3" id="current-category-name"></div>
+					<div class="mb-3" id="new-category-name-parent" type="text" name="new-category-name-parent"></div>
+
+					<div class="mb-3" id="limit-checkbox"></div>
+					<div class="mb-3" id="limit-value"></div>
+					
+					<div id="add-edit-message" class="form-text error"></div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+						<button type="submit" class="btn btn-primary" id="add-edit-submit-form-btn"></button>
+					</div>
+
+				</div>
+			</form>
+
+			</div>
+		</div>
+	</div>
+	
+		<!-- Remove category modal -->
+	<div class="modal fade" id="remove-modal" tabindex="-1" aria-labelledby="remove-modal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="remove-title">Usuń kategorię</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+
+			<p>Usunięcie wybranej kategorii spowoduje usunięcie ... rekordów przypisanych do kategorii !!! </p>
+			<div id="remove-message" class="form-text error"></div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+				<button type="button" class="btn btn-primary" id="remove-btn">Zapisz</button>
+			</div>
+			
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+

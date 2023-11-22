@@ -1,0 +1,231 @@
+{% extends 'base.twig' %}
+
+{% block title %}{{ period }}
+{% endblock %}
+
+{% block footer %}
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+
+		google.charts.load("current", {packages:["corechart"]});
+
+		{% if expense_balance is not null and expense_balance is not empty %}
+			google.charts.setOnLoadCallback(drawChart);
+		{% endif %}
+
+		function drawChart() {
+			var data = google.visualization.arrayToDataTable([
+				['Category', 'Expense Amount'],
+
+				{% for expense in expense_balance %}
+				['{{ expense.name }}', {{ expense.expenseSum }}],
+				{% endfor %}
+				]);
+
+
+			var options = {
+				is3D: true,
+				chartArea:{top:20,width:300,height:300}
+			};
+
+			var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+			chart.draw(data, options);
+		}
+
+	</script>
+{% endblock %}
+
+{% block body %}
+
+	<section class="light-colored-section" id="balance">
+
+		<div class="container-fluid">
+			<h1 class="title-heading">{{ period }}</h1>
+
+			<p>Zakres dat:
+				{{ start_date }}
+				 - 
+				{{ end_date }}
+
+			</p>
+
+			<div class="row">
+				<div class="single-column col-lg-6">
+					<div class="card">
+						<h1 class="balance-heading">Przychody</h1>
+						<hr>
+
+						{% if incomes is not empty %}
+
+						<div class="centeredTable">
+							<table id="income_table">
+
+								<tr>
+									<th colspan="4">Zestawienie wszystkich przychodów
+									</th>
+								</tr>
+								<tr>
+									<th>Kategoria</th>
+									<th>Kwota [PLN]</th>
+									<th>Data</th>
+									<th>Komentarz</th>
+								</tr>
+
+								{% for income in incomes %}
+								<tr>
+									<td>{{ income.name }}</td>
+									<td>{{ income.amount | number_format(2, ',', ' ') }}</td>
+									<td>{{ income.date_of_income }}</td>
+									<td>{{ income.income_comment }}</td>
+								</tr>
+								{% endfor %}
+
+							</table>
+						</div>
+
+						{% endif %}
+						
+
+
+						{% if income_balance is not empty %}
+
+						<div class="centeredTable">
+							<table id="income_table">
+								<tr>
+									<th colspan="4">Suma przychodów według kategorii
+								</th>
+								</tr>
+								<tr>
+									<th class="balanseTable">Kategoria</th>
+									<th class="balanseTable">Kwota [PLN]</th>
+								</tr>
+
+								{% set totalIncome = 0 %}
+								{% for income in income_balance %}
+									{% set totalIncome = totalIncome + income.incomeSum %}
+									<tr>
+										<td class="balanseTable">{{ income.name }}</td>
+										<td class="balanseTable">{{ income.incomeSum | number_format(2, ',', ' ') }}</td>
+									</tr>
+								{% endfor %}
+
+							</table>
+						</div>
+
+						{% endif %}
+
+						<h5>Suma wszystkich przychodów:
+							{{ totalIncome | number_format(2, ',', ' ') }}
+							PLN</h5>
+
+					</div>
+				</div>
+
+				<div class="single-column col-lg-6">
+					<div class="card">
+						<h1 class="balance-heading">Wydatki</h1>
+						<hr>
+
+						{% if expenses is not empty %}
+
+						<div class="centeredTable">
+							<table id="expense_table">
+								<tr>
+									<th colspan="4">Zestawienie wszystkich wydatków
+								</th>
+								</tr>
+								<tr>
+									<th>Kategoria</th>
+									<th>Kwota [PLN]</th>
+									<th>Data</th>
+									<th>Komentarz</th>
+								</tr>
+
+								{% for expense in expenses %}
+									<tr>
+										<td>{{ expense.name }}</td>
+										<td>{{ expense.amount | number_format(2, ',', ' ') }}</td>
+										<td>{{ expense.date_of_expense }}</td>
+										<td>{{ expense.expense_comment }}</td>
+									</tr>
+								{% endfor %}
+
+							</table>
+						</div>
+
+						{% endif %}
+
+						{% if expense_balance is not empty %}
+
+						<div class="centeredTable">
+							<table id="expense_table">
+								<tr>
+									<th colspan="4">Suma wydatków według kategorii
+								</th>
+								</tr>
+								<tr>
+									<th style="width:50%">Kategoria</th>
+									<th>Kwota [PLN]</th>
+								</tr>
+
+								{% set totalExpense = 0 %}
+								{% for expense in expense_balance %}
+									{% set totalExpense = totalExpense + expense.expenseSum %}
+									<tr>
+										<td>{{ expense.name }}</td>
+										<td>{{ expense.expenseSum | number_format(2, ',', ' ') }}</td>
+									</tr>
+								{% endfor %}
+
+							</table>
+						</div>
+
+						{% endif %}
+
+						<h5>Suma wszystkich wydatków:
+							{{ totalExpense | number_format(2, ',', ' ') }}
+							PLN</h5>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="single-column-thin col-lg-12">
+					<div class="card">
+						<h1 class="balance-heading-full">Bilans</h1>
+						<hr>
+
+						{% set balance = totalIncome - totalExpense %}
+						<h3 class="{{ (balance >= 0) ? 'success' : 'error' }}">Twój bilans wynosi:
+							{{balance | number_format(2, ',', ' ') }}
+							PLN</h3>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="single-column-wide col-lg-12">
+					<div class="card">
+						<h1 class="balance-heading-full">Podział procentowy wydatków:</h1>
+						<hr>
+						<div id="piechart"></div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+
+{% endblock %}
+
